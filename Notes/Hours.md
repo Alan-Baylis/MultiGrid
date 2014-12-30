@@ -64,19 +64,18 @@ Fun for all ages - Educational for kids
 - Create Block Prefab
 - Create some blocks
 
-### 5:10-
+### 5:10-5:29
 
-- Programmatically create Blocks of any size
+- Programmatically create Block pattern of any size
 
+### 5:30-
 
+- Change block size to match pattern size
 
 ## TODO
 
 ### Implementation Tasks
 
-- Create Block Test Scene
-- Create statically sized blocks
-- Create Tileable Block Graphic
 - Programmatically create Blocks of any size
 - Display block size text (when highlighted)
 
