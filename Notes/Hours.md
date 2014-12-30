@@ -92,9 +92,16 @@ Fun for all ages - Educational for kids
 
 - Add blocks to grid
 
+### 8:13-8:38
+
+- Fix font culling
+
 ## TODO
 
 ### Implementation Tasks
+
+- Fix textmesh shader so it doesn't go through objects:
+	- http://wiki.unity3d.com/index.php?title=3DText
 
 - Add electrical particle emitters to correct block positions
 - Display grid position text (when highlighted)
