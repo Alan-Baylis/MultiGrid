@@ -79,19 +79,19 @@ Fun for all ages - Educational for kids
 
 ## Hour 3
 
-### 6:40-
+### 6:40-7:13
 
 - Create Grid Test Scene
+- Create rows and columns
 
+### 7:14-7:36
+
+- Detect row and column for click
 
 ## TODO
 
 ### Implementation Tasks
 
-
-
-
-- Programmatically create Grid of any size
 - Click to add block in test scene
 - Add electrical particle emitters to correct block positions
 - Display grid position text (when highlighted)

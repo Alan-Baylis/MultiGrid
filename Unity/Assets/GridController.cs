@@ -29,6 +29,55 @@ public class GridController : MonoBehaviour
 
     void Update()
     {
+        UpdateGridSize();
+        UpdateInput();
+    }
+
+    private void UpdateInput()
+    {
+        // Detect click or touch
+        if (Input.touchCount > 0 || Input.anyKey)
+        {
+            var screenPos = Input.mousePosition;
+            var worldPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.mainCamera.transform.position.y));
+
+            // Calculate input location in grid
+            var x = worldPos.x;
+            var z = worldPos.z;
+
+            var total = 0;
+            var col = minColumnValue;
+
+            for (int v = minColumnValue; v < maxColumnValue; v++)
+            {
+                total += v;
+                if (x < total) { break; }
+
+                col++;
+            }
+
+            var row = minRowValue;
+            total = 0;
+
+            for (int v = minRowValue; v < maxRowValue; v++)
+            {
+                total += v;
+                if (z < total) { break; }
+
+                row++;
+            }
+
+
+            Debug.Log("screenPos: " + screenPos);
+            Debug.Log("worldPos: " + worldPos);
+            Debug.Log("col: " + col);
+            Debug.Log("row: " + row);
+        }
+
+    }
+
+    private void UpdateGridSize()
+    {
         var hasChanged =
             minColumnValue != _lastMinColumnValue
          || maxColumnValue != _lastMaxColumnValue
