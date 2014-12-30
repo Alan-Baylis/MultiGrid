@@ -68,16 +68,21 @@ Fun for all ages - Educational for kids
 
 - Programmatically create Block pattern of any size
 
-### 5:30-
+### 5:30-5:38
 
 - Change block size to match pattern size
+
+### 5:39-6:25
+
+- Display block size text (when highlighted)
+- Improve text format
+
 
 ## TODO
 
 ### Implementation Tasks
 
-- Programmatically create Blocks of any size
-- Display block size text (when highlighted)
+
 
 - Create Grid Test Scene
 - Programmatically create Grid of any size

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BlockController : MonoBehaviour
 {
+    public bool shouldShowBlockText;
+
     public int width;
     public int height;
 
@@ -12,10 +14,12 @@ public class BlockController : MonoBehaviour
     private int _lastHeight;
 
     private GameObject _cubes;
+    private TextMesh _textMesh;
 
     void Start()
     {
         _cubes = transform.FindChild("Cubes").gameObject;
+        _textMesh = transform.FindChild("Text").GetComponent<TextMesh>();
     }
 
     void Update()
@@ -27,9 +31,39 @@ public class BlockController : MonoBehaviour
             var material = GetOrCreateMaterial(_cubes, _materials, width, height);
             _cubes.GetComponent<MeshRenderer>().material = material;
 
+            transform.localScale = new Vector3(width, 1, height);
+
             _lastWidth = width;
             _lastHeight = height;
+
+            // Set text
+            var val = width * height;
+            _textMesh.text = val + "";
+
+            // Keep the text square
+            var baseScale = 0.085f;
+            var maxScale = Mathf.Max(width, height);
+            _textMesh.transform.localScale = new Vector3(
+                baseScale * height / maxScale,
+                baseScale * width / maxScale,
+                1);
+
+            // Reduce the text size if needed
+            if (val < 10)
+            {
+                _textMesh.characterSize = 1f;
+            }
+            else if (val < 100)
+            {
+                _textMesh.characterSize = 0.6f;
+            }
+            else
+            {
+                _textMesh.characterSize = 0.4f;
+            }
         }
+
+        _textMesh.gameObject.SetActive(shouldShowBlockText);
     }
 
     private static Material GetOrCreateMaterial(GameObject cubes, Material[,] materials, int width, int height)
