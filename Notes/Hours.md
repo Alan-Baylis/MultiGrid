@@ -56,18 +56,23 @@ Fun for all ages - Educational for kids
 
 - Create tasks
 
+## Hour 2
+
+### 4:49-5:09
+
+- Create Block Test Scene
+- Create Block Prefab
+- Create some blocks
+
+### 5:10-
+
+- Programmatically create Blocks of any size
+
+
+
 ## TODO
 
-### Publishing Tasks
-
-- Create Icon
-	- A few correct blocks surrounded by electrical grid
-- Create Screenshots
-- Create Promotional Graphics
-- Create Promotional Video
-
 ### Implementation Tasks
-
 
 - Create Block Test Scene
 - Create statically sized blocks
@@ -103,6 +108,15 @@ Fun for all ages - Educational for kids
 - Random levels: Create grid of random size
 - Show title
 
-### Future
+### Publishing Tasks
+
+- Create Icon
+	- A few correct blocks surrounded by electrical grid
+- Create Screenshots
+- Create Promotional Graphics
+- Create Promotional Video
+
+
+### Future Tasks
 
 - Add stages
