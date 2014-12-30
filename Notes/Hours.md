@@ -88,11 +88,14 @@ Fun for all ages - Educational for kids
 
 - Detect row and column for click
 
+### 7:37-8:12
+
+- Add blocks to grid
+
 ## TODO
 
 ### Implementation Tasks
 
-- Click to add block in test scene
 - Add electrical particle emitters to correct block positions
 - Display grid position text (when highlighted)
 

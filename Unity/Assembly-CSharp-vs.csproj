@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\BlockController.cs" />
      <Compile Include="Assets\GridController.cs" />
+     <Compile Include="Assets\GridTestController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

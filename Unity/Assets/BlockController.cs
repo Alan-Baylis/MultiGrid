@@ -20,11 +20,18 @@ public class BlockController : MonoBehaviour
     {
         _cubes = transform.FindChild("Cubes").gameObject;
         _textMesh = transform.FindChild("Text").GetComponent<TextMesh>();
+
+        UpdateSize();
     }
 
     void Update()
     {
 
+        UpdateSize();
+    }
+
+    private void UpdateSize()
+    {
         // Update material to match width and height
         if (width != _lastWidth || height != _lastHeight)
         {

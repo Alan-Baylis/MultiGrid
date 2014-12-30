@@ -4,10 +4,19 @@ using System.Collections;
 public class GridController : MonoBehaviour
 {
 
+    public static GridController Instance;
+
     public int minColumnValue;
     public int maxColumnValue;
     public int minRowValue;
     public int maxRowValue;
+
+    public System.Action<int, int> columnRowClickedCallback;
+    public System.Action<int, int> columnRowChangedCallback;
+    public int lastColumn;
+    public int lastRow;
+    public int lastColumnX;
+    public int lastRowZ;
 
     private int _lastMinColumnValue;
     private int _lastMaxColumnValue;
@@ -21,6 +30,10 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
+        if (Instance != null) { throw new UnityException("Cannot create multiple GridControllers"); }
+
+        Instance = this;
+
         _border = transform.FindChild("Border").gameObject;
         _rowColumnProto = transform.FindChild("RowColumnProto").gameObject;
         _rows = transform.FindChild("Rows").gameObject;
@@ -72,6 +85,26 @@ public class GridController : MonoBehaviour
             Debug.Log("worldPos: " + worldPos);
             Debug.Log("col: " + col);
             Debug.Log("row: " + row);
+
+            lastColumn = col;
+            lastRow = row;
+            lastColumnX = GetSize(minColumnValue, col - 1);
+            lastRowZ = GetSize(minRowValue, row - 1);
+
+            if (columnRowChangedCallback != null)
+            {
+                columnRowChangedCallback(col, row);
+                Debug.Log("Called columnRowChangedCallback");
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (columnRowClickedCallback != null)
+                {
+                    columnRowClickedCallback(col, row);
+                    Debug.Log("Called columnRowClickedCallback");
+                }
+            }
         }
 
     }
