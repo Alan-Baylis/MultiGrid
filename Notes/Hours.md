@@ -51,9 +51,58 @@ Fun for all ages - Educational for kids
 ### 3:53-4:15
 
 - Write the description
-- 
+
+### 4:16-4:40
+
+- Create tasks
 
 ## TODO
 
-- Write description
-- Create tasks
+### Publishing Tasks
+
+- Create Icon
+	- A few correct blocks surrounded by electrical grid
+- Create Screenshots
+- Create Promotional Graphics
+- Create Promotional Video
+
+### Implementation Tasks
+
+
+- Create Block Test Scene
+- Create statically sized blocks
+- Create Tileable Block Graphic
+- Programmatically create Blocks of any size
+- Display block size text (when highlighted)
+
+- Create Grid Test Scene
+- Programmatically create Grid of any size
+- Click to add block in test scene
+- Add electrical particle emitters to correct block positions
+- Display grid position text (when highlighted)
+
+- Create Crane Test Scene
+- Create crane
+- Make crane create a block of any size
+- Swing the block with mouse/touch input
+- Drop the block on click/tap
+- Move crane to position programmatically
+
+- Create main scene
+- Add grid
+- Add crane
+- Move camera to grid
+- Add "Drop" Button
+- Respond to inputs
+	- Directional: Move crane
+	- Move mouse/touch: Move crane
+	- "Drop" Button (Enter/Space Key): Drop block
+	- Tap on location: Move crane and drop
+
+- Create game state logic
+- Random levels: Create grid of random size
+- Show title
+
+### Future
+
+- Add stages
