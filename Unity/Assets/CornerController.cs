@@ -5,6 +5,7 @@ public class CornerController : MonoBehaviour
 {
     public Color _powerColor = new Color(0, 0, 0);
     public bool isVertical = false;
+    public bool isEdge = true;
 
     public void SetMaxColor(Color color)
     {
@@ -70,7 +71,6 @@ public class CornerController : MonoBehaviour
 
     void Update()
     {
-
     }
 
     void OnTriggerStay(Collider other)

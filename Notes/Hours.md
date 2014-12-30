@@ -112,15 +112,14 @@ Fun for all ages - Educational for kids
 
 - Improve the lights
 
-### 16:35
+### 16:35-17:07
+
+- Made the lights the same size on all values
 
 
 ## TODO
 
 ### Implementation Tasks
-
-- Fix textmesh shader so it doesn't go through objects:
-	- http://wiki.unity3d.com/index.php?title=3DText
 
 - Add electrical particle emitters to correct block positions
 - Display grid position text (when highlighted)

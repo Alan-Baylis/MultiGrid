@@ -99,6 +99,19 @@ public class BlockController : MonoBehaviour
             {
                 _textMesh.characterSize = 0.4f;
             }
+
+            // Reduce edges to keep size
+            foreach (var edge in _edges.GetComponentsInChildren<CornerController>())
+            {
+                if (edge.isVertical)
+                {
+                    edge.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f / width);
+                }
+                else
+                {
+                    edge.transform.parent.localScale = new Vector3(1.0f, 1.0f, 1.0f / height);
+                }
+            }
         }
 
         _textMesh.gameObject.SetActive(shouldShowBlockText);
