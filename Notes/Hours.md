@@ -96,6 +96,13 @@ Fun for all ages - Educational for kids
 
 - Fix font culling
 
+## Hour 4
+
+### 10:14-11:13
+
+- Color changes when blocks are touching
+
+
 ## TODO
 
 ### Implementation Tasks

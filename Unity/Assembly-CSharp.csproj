@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BlockController.cs" />
+     <Compile Include="Assets\CornerController.cs" />
      <Compile Include="Assets\GridController.cs" />
      <Compile Include="Assets\GridTestController.cs" />
+     <Compile Include="Assets\PowerSourceController.cs" />
      <None Include="Assets\Materials\3dText.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
