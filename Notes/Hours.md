@@ -108,7 +108,11 @@ Fun for all ages - Educational for kids
 
 ## Hour 6
 
-### 16:04-
+### 16:04-16:34
+
+- Improve the lights
+
+### 16:35
 
 
 ## TODO

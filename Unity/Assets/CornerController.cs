@@ -4,6 +4,7 @@ using System.Collections;
 public class CornerController : MonoBehaviour
 {
     public Color _powerColor = new Color(0, 0, 0);
+    public bool isVertical = false;
 
     public void SetMaxColor(Color color)
     {
@@ -44,17 +45,17 @@ public class CornerController : MonoBehaviour
 
 
         // Transfer power to entire block
-        collider.attachedRigidbody.GetComponent<BlockController>().SetMaxColor(color);
+        //collider.attachedRigidbody.GetComponent<BlockController>().SetMaxColor(color);
 
-        var corners = collider.attachedRigidbody.GetComponentsInChildren<CornerController>();
+        //var corners = collider.attachedRigidbody.GetComponentsInChildren<CornerController>();
 
-        foreach (var corner in corners)
-        {
-            if (corner != this)
-            {
-                corner.SetMaxColor(color);
-            }
-        }
+        //foreach (var corner in corners)
+        //{
+        //    if (corner != this)
+        //    {
+        //        corner.SetMaxColor(color);
+        //    }
+        //}
     }
 
     private void ResetColor()
@@ -79,7 +80,7 @@ public class CornerController : MonoBehaviour
 
         var otherCorner = other.GetComponent<CornerController>();
 
-        if (otherCorner != null)
+        if (otherCorner != null && canTransfer(otherCorner))
         {
             var maxPower = GetMaxColor(_powerColor, otherCorner._powerColor);
 
@@ -87,6 +88,11 @@ public class CornerController : MonoBehaviour
             otherCorner.SetMaxColor(maxPower);
         }
 
+    }
+
+    private bool canTransfer(CornerController otherCorner)
+    {
+        return this.isVertical == otherCorner.isVertical;
     }
 
     public static Color GetMaxColor(Color a, Color b)

@@ -15,6 +15,8 @@ public class BlockController : MonoBehaviour
 
     private GameObject _cubes;
     private TextMesh _textMesh;
+    private GameObject _edges;
+
 
     public Color _powerColor = new Color(0, 0, 0);
     private Color _defaultColor;
@@ -32,6 +34,7 @@ public class BlockController : MonoBehaviour
     {
         _cubes = transform.FindChild("Cubes").gameObject;
         _textMesh = transform.FindChild("Text").GetComponent<TextMesh>();
+        _edges = transform.FindChild("Edges").gameObject;
 
         UpdateSize();
     }
@@ -40,8 +43,22 @@ public class BlockController : MonoBehaviour
 
     void Update()
     {
-
         UpdateSize();
+        UpdateColor();
+    }
+
+    private void UpdateColor()
+    {
+        var baseVal = 0.25f;
+        var color = new Color(baseVal, baseVal, baseVal);
+
+        foreach (var edge in _edges.GetComponentsInChildren<CornerController>())
+        {
+            color += edge._powerColor * 0.25f * (1 - baseVal);
+        }
+
+        _cubes.GetComponent<MeshRenderer>().material.color = color;
+        //SetMaxColor(color);
     }
 
     private void UpdateSize()

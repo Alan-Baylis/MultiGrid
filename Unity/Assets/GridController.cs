@@ -155,6 +155,9 @@ public class GridController : MonoBehaviour
                 col.transform.parent = _columns.transform;
                 col.SetActive(true);
 
+                //powerSourcesToAddA.Add(col.transform.localPosition + new Vector3(i * 0.5f, 0, 0));
+                //powerSourcesToAddB.Add(col.transform.localPosition + new Vector3(i * 0.5f, 0, height));
+
                 powerSourcesToAddA.Add(col.transform.localPosition + new Vector3(i, 0, 0));
                 powerSourcesToAddB.Add(col.transform.localPosition + new Vector3(i, 0, height));
 
@@ -172,6 +175,9 @@ public class GridController : MonoBehaviour
 
                 powerSourcesToAddC.Add(r.transform.localPosition + new Vector3(0, 0, j));
                 powerSourcesToAddD.Add(r.transform.localPosition + new Vector3(width, 0, j));
+                //powerSourcesToAddC.Add(r.transform.localPosition + new Vector3(0, 0, j * 0.5f));
+                //powerSourcesToAddD.Add(r.transform.localPosition + new Vector3(width, 0, j * 0.5f));
+
 
                 y += j;
             }
@@ -179,18 +185,19 @@ public class GridController : MonoBehaviour
             powerSourcesToAddA.Reverse();
             powerSourcesToAddA.Add(new Vector3());
             powerSourcesToAddA.AddRange(powerSourcesToAddC);
-            powerSourcesToAddA.AddRange(powerSourcesToAddB);
-            powerSourcesToAddA.Add(new Vector3(width, 0, height));
-            powerSourcesToAddD.Reverse();
-            powerSourcesToAddA.AddRange(powerSourcesToAddD);
+            
+            //powerSourcesToAddA.AddRange(powerSourcesToAddB);
+            //powerSourcesToAddA.Add(new Vector3(width, 0, height));
+            //powerSourcesToAddD.Reverse();
+            //powerSourcesToAddA.AddRange(powerSourcesToAddD);
 
             var iPS = 0;
             foreach (var pSource in powerSourcesToAddA)
             {
-                if (iPS % 2 == 0)
-                {
+                //if (iPS % 2 == 0)
+                //{
                     CreatePowerSource(pSource, GetPowerSourceColor(iPS));
-                }
+                //}
 
                 iPS++;
             }
