@@ -28,6 +28,10 @@ public class GridController : MonoBehaviour
     private GameObject _rows;
     private GameObject _columns;
 
+    private GameObject _powerSourceProto;
+    private GameObject _powerSources;
+
+
     void Start()
     {
         if (Instance != null) { throw new UnityException("Cannot create multiple GridControllers"); }
@@ -38,6 +42,8 @@ public class GridController : MonoBehaviour
         _rowColumnProto = transform.FindChild("RowColumnProto").gameObject;
         _rows = transform.FindChild("Rows").gameObject;
         _columns = transform.FindChild("Columns").gameObject;
+        _powerSourceProto = transform.FindChild("PowerSourceProto").gameObject;
+        _powerSources = transform.FindChild("PowerSources").gameObject;
     }
 
     void Update()
@@ -134,6 +140,12 @@ public class GridController : MonoBehaviour
                 Destroy(r);
             }
 
+
+            var powerSourcesToAddA = new System.Collections.Generic.List<Vector3>();
+            var powerSourcesToAddB = new System.Collections.Generic.List<Vector3>();
+            var powerSourcesToAddC = new System.Collections.Generic.List<Vector3>();
+            var powerSourcesToAddD = new System.Collections.Generic.List<Vector3>();
+
             var x = 0;
             for (int i = minColumnValue; i <= maxColumnValue; i++)
             {
@@ -142,6 +154,9 @@ public class GridController : MonoBehaviour
                 col.transform.localPosition = new Vector3(x, 0, 0);
                 col.transform.parent = _columns.transform;
                 col.SetActive(true);
+
+                powerSourcesToAddA.Add(col.transform.localPosition + new Vector3(i, 0, 0));
+                powerSourcesToAddB.Add(col.transform.localPosition + new Vector3(i, 0, height));
 
                 x += i;
             }
@@ -155,15 +170,67 @@ public class GridController : MonoBehaviour
                 r.transform.parent = _rows.transform;
                 r.SetActive(true);
 
+                powerSourcesToAddC.Add(r.transform.localPosition + new Vector3(0, 0, j));
+                powerSourcesToAddD.Add(r.transform.localPosition + new Vector3(width, 0, j));
+
                 y += j;
             }
-        }
 
+            powerSourcesToAddA.Reverse();
+            powerSourcesToAddA.Add(new Vector3());
+            powerSourcesToAddA.AddRange(powerSourcesToAddC);
+            powerSourcesToAddA.AddRange(powerSourcesToAddB);
+            powerSourcesToAddA.Add(new Vector3(width, 0, height));
+            powerSourcesToAddD.Reverse();
+            powerSourcesToAddA.AddRange(powerSourcesToAddD);
+
+            var iPS = 0;
+            foreach (var pSource in powerSourcesToAddA)
+            {
+                if (iPS % 2 == 0)
+                {
+                    CreatePowerSource(pSource, GetPowerSourceColor(iPS));
+                }
+
+                iPS++;
+            }
+
+            powerSourcesToAddA.Clear();
+            powerSourcesToAddB.Clear();
+            powerSourcesToAddC.Clear();
+            powerSourcesToAddD.Clear();
+        }
 
         _lastMinColumnValue = minColumnValue;
         _lastMaxColumnValue = maxColumnValue;
         _lastMinRowValue = minRowValue;
         _lastMaxRowValue = maxRowValue;
+    }
+
+    private void CreatePowerSource(Vector3 vector3, Color color)
+    {
+        var g = Instantiate(_powerSourceProto) as GameObject;
+        g.transform.localPosition = vector3;
+        g.transform.parent = _powerSources.transform;
+        g.SetActive(true);
+
+        var pSource = g.GetComponent<PowerSourceController>();
+        pSource.powerColor = color;
+    }
+
+    private Color GetPowerSourceColor(int val)
+    {
+        var type = val % 3;
+        switch (type)
+        {
+            case 0:
+                return new Color(1, 0, 0);
+            case 1:
+                return new Color(0, 1, 0);
+            case 2:
+            default:
+                return new Color(0, 0, 1);
+        }
     }
 
     private int GetSize(int min, int max)

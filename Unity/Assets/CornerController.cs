@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CornerController : MonoBehaviour
 {
-    private Color _powerColor = new Color(0, 0, 0);
+    public Color _powerColor = new Color(0, 0, 0);
 
     public void SetMaxColor(Color color)
     {
@@ -19,23 +19,40 @@ public class CornerController : MonoBehaviour
 
     private void SetMaxColorInner(Color color)
     {
-        if (color != _powerColor)
+        var newColor = GetMaxColor(color, _powerColor);
+
+        if (newColor != _powerColor)
         {
-            _powerColor = GetMaxColor(color, _powerColor);
+            _powerColor = newColor;
+
             ResetColor();
-            Debug.Log("_powerColor:" + _powerColor);
+            Debug.Log("SetMaxColorInner _powerColor:" + _powerColor);
 
-            // Transfer power to entire block
-            collider.attachedRigidbody.GetComponent<BlockController>().SetMaxColor(_powerColor);
+            TransferPower();
+        }
+    }
 
-            var corners = collider.attachedRigidbody.GetComponentsInChildren<CornerController>();
+    private void TransferPower()
+    {
+        var ratio = 0.8f;
 
-            foreach (var corner in corners)
+        var color = _powerColor;
+
+        // Reduce the power
+        color = new Color(color.r * ratio, color.g * ratio, color.b * ratio);
+        Debug.Log("TransferPower _powerColor:" + _powerColor + " -> color:" + color);
+
+
+        // Transfer power to entire block
+        collider.attachedRigidbody.GetComponent<BlockController>().SetMaxColor(color);
+
+        var corners = collider.attachedRigidbody.GetComponentsInChildren<CornerController>();
+
+        foreach (var corner in corners)
+        {
+            if (corner != this)
             {
-                if (corner != this)
-                {
-                    corner.SetMaxColor(_powerColor);
-                }
+                corner.SetMaxColor(color);
             }
         }
     }

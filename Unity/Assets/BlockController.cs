@@ -16,7 +16,7 @@ public class BlockController : MonoBehaviour
     private GameObject _cubes;
     private TextMesh _textMesh;
 
-    private Color _powerColor = new Color(0, 0, 0);
+    public Color _powerColor = new Color(0, 0, 0);
     private Color _defaultColor;
 
     public void SetMaxColor(Color color)

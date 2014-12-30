@@ -13,7 +13,7 @@ public class PowerSourceController : MonoBehaviour
         if (corner != null)
         {
             corner.SetMaxColor(powerColor);
-            Debug.Log("Transferred Power to Corner");
+            Debug.Log("Transferred Power to Corner powerColor:" + powerColor);
         }
     }
 

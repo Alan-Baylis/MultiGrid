@@ -100,7 +100,15 @@ Fun for all ages - Educational for kids
 
 ### 10:14-11:13
 
-- Color changes when blocks are touching
+- Change color when blocks are touching
+
+## Hour 5
+
+- Add power sources to grid
+
+## Hour 6
+
+### 16:04-
 
 
 ## TODO
