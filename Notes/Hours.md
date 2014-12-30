@@ -77,6 +77,12 @@ Fun for all ages - Educational for kids
 - Display block size text (when highlighted)
 - Improve text format
 
+## Hour 3
+
+### 6:40-
+
+- Create Grid Test Scene
+
 
 ## TODO
 
@@ -84,7 +90,7 @@ Fun for all ages - Educational for kids
 
 
 
-- Create Grid Test Scene
+
 - Programmatically create Grid of any size
 - Click to add block in test scene
 - Add electrical particle emitters to correct block positions
