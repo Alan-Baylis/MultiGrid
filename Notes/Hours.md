@@ -144,19 +144,23 @@ Fun for all ages - Educational for kids
 
 ## Hour 9
 
-### 5:48-
+### 5:48-6:16
 
 - Handle all blocks placed
 - Highlight crane with blue for attachment cube
+
+### 6:17-6:39
+
+- Create main scene
+- Add ground texture
+- Improve row column visuals
+
+### 6:40-
 
 ## TODO
 
 ### Implementation Tasks
 
-- Handle blocks all placed
-- Highlight crane green when in correct position
-- Highlight crane red when in bad position
-- Highlight crane line block as blue
 
 - Create main scene
 - Add grid

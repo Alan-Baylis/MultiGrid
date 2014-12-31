@@ -174,6 +174,8 @@ public class GridController : MonoBehaviour
                 col.transform.parent = _columns.transform;
                 col.SetActive(true);
 
+                col.GetComponentInChildren<MeshRenderer>().material.color = GetPowerSourceColor(i);
+
                 text.Add(new TextWithPosition(col.transform.localPosition + new Vector3(i * 0.5f, 0, 0 - 1f), i + ""));
                 text.Add(new TextWithPosition(col.transform.localPosition + new Vector3(i * 0.5f, 0, height + 1f), i + ""));
 
@@ -191,6 +193,9 @@ public class GridController : MonoBehaviour
                 r.transform.localPosition = new Vector3(0, 0, y);
                 r.transform.parent = _rows.transform;
                 r.SetActive(true);
+
+                r.GetComponentInChildren<MeshRenderer>().material.color = GetPowerSourceColor(j);
+
 
                 text.Add(new TextWithPosition(r.transform.localPosition + new Vector3(0 - 1f, 0, j * 0.5f), j + ""));
                 text.Add(new TextWithPosition(r.transform.localPosition + new Vector3(width + 1f, 0, j * 0.5f), j + ""));
