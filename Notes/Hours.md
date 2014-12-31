@@ -127,17 +127,26 @@ Fun for all ages - Educational for kids
 - Move block with crane
 - Drop block
 
+### 5:09-
+
+- Move crane to position on mouse down
+- Drop block on mouse/tap up
+- Move crane to reset position after drop
 
 ## TODO
 
 ### Implementation Tasks
 
-- Create Crane Test Scene
-- Create crane
-- Make crane create a block of any size
-- Swing the block with mouse/touch input
-- Drop the block on click/tap
-- Move crane to position programmatically
+- Align crane with nearest position
+
+- Move crane back to reset position after drop
+
+- Ideas:
+	- Drop block only on mouse click (or tap on button, but not on touch anywhere)
+	- Add drop button
+	- Move crane to position programmatically
+
+
 
 - Create main scene
 - Add grid
@@ -149,6 +158,7 @@ Fun for all ages - Educational for kids
 	- Move mouse/touch: Move crane
 	- "Drop" Button (Enter/Space Key): Drop block
 	- Tap on location: Move crane and drop
+
 
 - Create game state logic
 - Random levels: Create grid of random size

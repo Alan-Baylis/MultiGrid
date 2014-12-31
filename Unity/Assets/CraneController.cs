@@ -18,6 +18,13 @@ public class CraneController : MonoBehaviour
     private GameObject _blockProto;
     private GridController _gridController;
 
+    private List<BlockPosition> _blockList;
+    private GameObject _attachedBlock;
+    private float _attachmentLength;
+    private float _timeToAttach = 0f;
+
+    private Vector3 _craneResetPosition;
+
     void Start()
     {
         _crane = transform.FindChild("Crane").gameObject;
@@ -27,7 +34,12 @@ public class CraneController : MonoBehaviour
         _blockProto = transform.FindChild("BlockProto").gameObject;
         SetGridController();
 
-        _crane.transform.position = new Vector3(5, craneHeight, 5);
+        _craneResetPosition = new Vector3(
+            _crane.transform.localPosition.x,
+            craneHeight,
+            _crane.transform.localPosition.z);
+
+        _crane.transform.position = _craneResetPosition;
 
         _timeToAttach = Time.time + 0.1f;
     }
@@ -41,10 +53,7 @@ public class CraneController : MonoBehaviour
         }
     }
 
-    private List<BlockPosition> _blockList;
-    private GameObject _attachedBlock;
-    private float _attachmentLength;
-    private float _timeToAttach = 0f;
+
 
     void Update()
     {
@@ -64,11 +73,35 @@ public class CraneController : MonoBehaviour
         }
 
 
-        // Move attached to position
-        var screenPos = Input.mousePosition;
-        var worldPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.mainCamera.transform.position.y));
-        MoveCraneTo(worldPos + new Vector3(0, craneHeight, 0));
+        // Move crane to position
+        if (_attachedBlock == null)
+        {
+            MoveCraneTo(_craneResetPosition);
+        }
+        else
+        {
+            if (Input.GetMouseButton(0))
+            {
+                var screenPos = Input.mousePosition;
+                var worldPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Camera.mainCamera.transform.position.y));
 
+                // If near to column, row, then use exact position
+                var col = _gridController.lastColumn;
+                var row = _gridController.lastRow;
+                var colMidX = _gridController.lastColumnX + col * 0.5f;
+                var rowMidZ = _gridController.lastRowZ + row * 0.5f;
+
+                if (Mathf.Abs(colMidX - worldPos.x) < col
+                    && Mathf.Abs(rowMidZ - worldPos.z) < row)
+                {
+                    worldPos = new Vector3(colMidX, 0, rowMidZ);
+                }
+
+                MoveCraneTo(worldPos + new Vector3(0, craneHeight, 0));
+            }
+        }
+
+        // Move attached to crane
         if (_attachedBlock != null)
         {
             //Debug.Log("MoveCraneTo screenPos: " + screenPos + " worldPos:" + worldPos);
@@ -78,7 +111,7 @@ public class CraneController : MonoBehaviour
 
 
             // Drop block
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 DropBlock();
             }
@@ -129,14 +162,31 @@ public class CraneController : MonoBehaviour
         _craneGroundCube.transform.position = _crane.transform.position + new Vector3(0, -0.5f * craneHeight, 0);
     }
 
-    private void MoveCraneTo(Vector3 pos)
+    private void MoveCraneTo(Vector3 target)
     {
-        Debug.Log("MoveCraneTo pos: " + pos);
+        Debug.Log("MoveCraneTo pos: " + target);
 
-        var diff = pos - _crane.transform.position;
-        _crane.rigidbody.AddForce(diff * forceModifierCraneToInput);
+        var diff = target - _crane.transform.position;
+        var force = diff * forceModifierCraneToInput;
 
-        Debug.Log("MoveCraneTo to: " + pos + " from:" + _crane.transform.position + " force:" + diff);
+        if (diff.sqrMagnitude < 1f)
+        {
+            force = diff * forceModifierCraneToInput * 2;
+        }
+
+        if (diff.sqrMagnitude < 0.5f)
+        {
+            force = diff * forceModifierCraneToInput * 3;
+        }
+
+        _crane.rigidbody.AddForce(force);
+
+        //if (diff.sqrMagnitude < 0.5f)
+        //{
+        //    _crane.rigidbody.MovePosition(target);
+        //}
+
+        Debug.Log("MoveCraneTo to: " + target + " from:" + _crane.transform.position + " force:" + diff);
     }
 
     private void AttachNextBlock()
@@ -171,7 +221,8 @@ public class CraneController : MonoBehaviour
 
     private bool IsReadyForNextBlock()
     {
-        if (_attachedBlock == null)
+        if (_attachedBlock == null
+            && (_crane.transform.position - _craneResetPosition).sqrMagnitude < 0.1f)
         {
             if (_timeToAttach <= 0)
             {
