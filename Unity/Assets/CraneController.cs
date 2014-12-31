@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 public class CraneController : MonoBehaviour
 {
+    public static CraneController Instance;
 
     public float nextBlockDelay = 1f;
     public float craneHeight = 10;
     public float blockFallRate = 0.1f;
     public float forceModifierCraneToInput = 4.0f;
     public float forceModifierBlockToCrane = 4.0f;
+
+    private bool _hasStarted;
 
     private GameObject _crane;
     private GameObject _craneGroundCube;
@@ -27,6 +30,8 @@ public class CraneController : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
+
         _crane = transform.FindChild("Crane").gameObject;
         _craneGroundCube = _crane.transform.FindChild("GroundCube").gameObject;
         _craneLineCube = _crane.transform.FindChild("LineCube").gameObject;
@@ -38,6 +43,20 @@ public class CraneController : MonoBehaviour
             _crane.transform.localPosition.x,
             craneHeight,
             _crane.transform.localPosition.z);
+
+        Reset();
+    }
+
+    public void Reset()
+    {
+        _hasStarted = false;
+        _blockList = null;
+        _attachedBlock = null;
+
+        foreach (Transform b in _blocks.transform)
+        {
+            Destroy(b.gameObject);
+        }
 
         _crane.transform.position = _craneResetPosition;
 
@@ -67,6 +86,7 @@ public class CraneController : MonoBehaviour
 
 
 
+
     void Update()
     {
         SetGridController();
@@ -76,6 +96,7 @@ public class CraneController : MonoBehaviour
         if (_blockList == null)
         {
             CreateBlockList();
+            _hasStarted = true;
         }
 
         // Attach block if ready
@@ -318,6 +339,16 @@ public class CraneController : MonoBehaviour
         }
 
         _blockList = rBlocks;
+    }
+
+    public bool HasLaidAllBlocks()
+    {
+        return _hasStarted && _blockList != null && _blockList.Count == 0 && _attachedBlock == null;
+    }
+
+    public Bounds GetBounds()
+    {
+        return Helpers.GetBoundsOfChildren(_crane);
     }
 }
 

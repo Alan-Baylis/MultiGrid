@@ -294,6 +294,13 @@ public class GridController : MonoBehaviour
 
         return size;
     }
+
+    public Bounds GetBounds()
+    {
+        return Helpers.GetBoundsOfChildren(_border);
+    }
+
+
 }
 
 public class TextWithPosition

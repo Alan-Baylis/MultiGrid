@@ -155,22 +155,28 @@ Fun for all ages - Educational for kids
 - Add ground texture
 - Improve row column visuals
 
-### 6:40-
+### 6:46-7:06
+
+- Create screen logic
+- Handle game complete
+- Fix Grid Text Labels
+
+### 7:07-
+
+- Move camera into position
+
+
+
 
 ## TODO
 
 ### Implementation Tasks
 
 
-- Create main scene
-- Add grid
-- Add crane
-- Move camera to grid
-
-
-
 - Create game state logic
 - Random levels: Create grid of random size
+- Move camera to grid
+
 
 ### Review Ideas
 
