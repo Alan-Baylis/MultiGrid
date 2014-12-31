@@ -119,10 +119,13 @@ Fun for all ages - Educational for kids
 
 ## Hour 7
 
-### 2014-12-31 3:20-
+### 2014-12-31 3:20-5:00
 
 - Add crane test scene
-
+- Make crane create a random size block
+- Add crane display to indicate drop position
+- Move block with crane
+- Drop block
 
 
 ## TODO

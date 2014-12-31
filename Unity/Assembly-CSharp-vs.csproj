@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\BlockController.cs" />
      <Compile Include="Assets\CornerController.cs" />
+     <Compile Include="Assets\CraneController.cs" />
      <Compile Include="Assets\GridController.cs" />
      <Compile Include="Assets\GridTestController.cs" />
      <Compile Include="Assets\PowerSourceController.cs" />
