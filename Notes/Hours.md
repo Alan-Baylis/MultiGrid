@@ -117,12 +117,17 @@ Fun for all ages - Educational for kids
 - Made the lights the same size on all values
 
 
+## Hour 7
+
+### 2014-12-31 3:20-
+
+- Add crane test scene
+
+
+
 ## TODO
 
 ### Implementation Tasks
-
-- Add electrical particle emitters to correct block positions
-- Display grid position text (when highlighted)
 
 - Create Crane Test Scene
 - Create crane
@@ -145,6 +150,8 @@ Fun for all ages - Educational for kids
 - Create game state logic
 - Random levels: Create grid of random size
 - Show title
+
+- Add electrical particle emitters
 
 ### Publishing Tasks
 

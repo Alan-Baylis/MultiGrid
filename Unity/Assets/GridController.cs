@@ -31,6 +31,10 @@ public class GridController : MonoBehaviour
     private GameObject _powerSourceProto;
     private GameObject _powerSources;
 
+    private GameObject _textProto;
+    private GameObject _texts;
+
+
 
     void Start()
     {
@@ -44,6 +48,9 @@ public class GridController : MonoBehaviour
         _columns = transform.FindChild("Columns").gameObject;
         _powerSourceProto = transform.FindChild("PowerSourceProto").gameObject;
         _powerSources = transform.FindChild("PowerSources").gameObject;
+
+        _textProto = transform.FindChild("TextProto").gameObject;
+        _texts = transform.FindChild("Texts").gameObject;
     }
 
     void Update()
@@ -132,12 +139,22 @@ public class GridController : MonoBehaviour
 
             foreach (Transform c in _columns.transform)
             {
-                Destroy(c);
+                Destroy(c.gameObject);
             }
 
             foreach (Transform r in _rows.transform)
             {
-                Destroy(r);
+                Destroy(r.gameObject);
+            }
+
+            foreach (Transform t in _powerSources.transform)
+            {
+                Destroy(t.gameObject);
+            }
+
+            foreach (Transform t in _texts.transform)
+            {
+                Destroy(t.gameObject);
             }
 
 
@@ -145,6 +162,8 @@ public class GridController : MonoBehaviour
             var powerSourcesToAddB = new System.Collections.Generic.List<Vector3>();
             var powerSourcesToAddC = new System.Collections.Generic.List<Vector3>();
             var powerSourcesToAddD = new System.Collections.Generic.List<Vector3>();
+
+            var text = new System.Collections.Generic.List<TextWithPosition>();
 
             var x = 0;
             for (int i = minColumnValue; i <= maxColumnValue; i++)
@@ -155,8 +174,8 @@ public class GridController : MonoBehaviour
                 col.transform.parent = _columns.transform;
                 col.SetActive(true);
 
-                //powerSourcesToAddA.Add(col.transform.localPosition + new Vector3(i * 0.5f, 0, 0));
-                //powerSourcesToAddB.Add(col.transform.localPosition + new Vector3(i * 0.5f, 0, height));
+                text.Add(new TextWithPosition(col.transform.localPosition + new Vector3(i * 0.5f, 0, 0 - 1f), i + ""));
+                text.Add(new TextWithPosition(col.transform.localPosition + new Vector3(i * 0.5f, 0, height + 1f), i + ""));
 
                 powerSourcesToAddA.Add(col.transform.localPosition + new Vector3(i, 0, 0));
                 powerSourcesToAddB.Add(col.transform.localPosition + new Vector3(i, 0, height));
@@ -173,11 +192,11 @@ public class GridController : MonoBehaviour
                 r.transform.parent = _rows.transform;
                 r.SetActive(true);
 
+                text.Add(new TextWithPosition(r.transform.localPosition + new Vector3(0 - 1f, 0, j * 0.5f), j + ""));
+                text.Add(new TextWithPosition(r.transform.localPosition + new Vector3(width + 1f, 0, j * 0.5f), j + ""));
+
                 powerSourcesToAddC.Add(r.transform.localPosition + new Vector3(0, 0, j));
                 powerSourcesToAddD.Add(r.transform.localPosition + new Vector3(width, 0, j));
-                //powerSourcesToAddC.Add(r.transform.localPosition + new Vector3(0, 0, j * 0.5f));
-                //powerSourcesToAddD.Add(r.transform.localPosition + new Vector3(width, 0, j * 0.5f));
-
 
                 y += j;
             }
@@ -185,7 +204,7 @@ public class GridController : MonoBehaviour
             powerSourcesToAddA.Reverse();
             powerSourcesToAddA.Add(new Vector3());
             powerSourcesToAddA.AddRange(powerSourcesToAddC);
-            
+
             //powerSourcesToAddA.AddRange(powerSourcesToAddB);
             //powerSourcesToAddA.Add(new Vector3(width, 0, height));
             //powerSourcesToAddD.Reverse();
@@ -196,7 +215,7 @@ public class GridController : MonoBehaviour
             {
                 //if (iPS % 2 == 0)
                 //{
-                    CreatePowerSource(pSource, GetPowerSourceColor(iPS));
+                CreatePowerSource(pSource, GetPowerSourceColor(iPS));
                 //}
 
                 iPS++;
@@ -206,12 +225,31 @@ public class GridController : MonoBehaviour
             powerSourcesToAddB.Clear();
             powerSourcesToAddC.Clear();
             powerSourcesToAddD.Clear();
+
+
+            // Text
+            foreach (var t in text)
+            {
+                CreateText(t);
+            }
+
         }
 
         _lastMinColumnValue = minColumnValue;
         _lastMaxColumnValue = maxColumnValue;
         _lastMinRowValue = minRowValue;
         _lastMaxRowValue = maxRowValue;
+    }
+
+    private void CreateText(TextWithPosition t)
+    {
+        var g = Instantiate(_textProto) as GameObject;
+        g.transform.localPosition = t.Position;
+        g.transform.parent = _texts.transform;
+        g.SetActive(true);
+
+        var textMesh = g.GetComponentInChildren<TextMesh>();
+        textMesh.text = t.Text;
     }
 
     private void CreatePowerSource(Vector3 vector3, Color color)
@@ -250,5 +288,17 @@ public class GridController : MonoBehaviour
         }
 
         return size;
+    }
+}
+
+public class TextWithPosition
+{
+    public string Text;
+    public Vector3 Position;
+
+    public TextWithPosition(Vector3 position, string text)
+    {
+        Position = position;
+        Text = text;
     }
 }

@@ -981,6 +981,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,6 +996,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1009,6 +1011,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,6 +1026,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1037,6 +1041,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 1
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,6 +1056,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1071,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 1
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1079,6 +1086,7 @@ MonoBehaviour:
   _powerColor: {r: 0, g: 0, b: 0, a: 1}
   isVertical: 0
   isEdge: 1
+  shouldEmitParticles: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

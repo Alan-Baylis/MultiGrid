@@ -6,6 +6,7 @@ public class CornerController : MonoBehaviour
     public Color _powerColor = new Color(0, 0, 0);
     public bool isVertical = false;
     public bool isEdge = true;
+    public bool shouldEmitParticles = false;
 
     public void SetMaxColor(Color color)
     {
