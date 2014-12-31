@@ -42,6 +42,18 @@ public class CraneController : MonoBehaviour
         _crane.transform.position = _craneResetPosition;
 
         _timeToAttach = Time.time + 0.1f;
+        ChangeColor(_craneGroundCube, Color.black);
+        ChangeColor(_craneLineCube, Color.black);
+    }
+
+    private void ChangeColor(GameObject cube, Color color)
+    {
+        var oldColor = cube.GetComponent<MeshRenderer>().material.color;
+
+        if (oldColor != color)
+        {
+            cube.GetComponent<MeshRenderer>().material.color = color;
+        }
     }
 
     private void SetGridController()
@@ -70,13 +82,21 @@ public class CraneController : MonoBehaviour
         if (IsReadyForNextBlock())
         {
             AttachNextBlock();
+
+            ChangeColor(_craneGroundCube, Color.black);
+            ChangeColor(_craneLineCube, Color.blue);
         }
 
 
         // Move crane to position
+        var isCorrectPosition = false;
+
         if (_attachedBlock == null)
         {
             MoveCraneTo(_craneResetPosition);
+
+            ChangeColor(_craneGroundCube, Color.black);
+            ChangeColor(_craneLineCube, Color.black);
         }
         else
         {
@@ -95,9 +115,30 @@ public class CraneController : MonoBehaviour
                     && Mathf.Abs(rowMidZ - worldPos.z) < row)
                 {
                     worldPos = new Vector3(colMidX, 0, rowMidZ);
+
+                    if (col == _attachedBlock.GetComponent<BlockController>().width
+                        && row == _attachedBlock.GetComponent<BlockController>().height)
+                    {
+                        isCorrectPosition = true;
+                    }
+
                 }
 
-                MoveCraneTo(worldPos + new Vector3(0, craneHeight, 0));
+                var target = worldPos + new Vector3(0, craneHeight, 0);
+
+                MoveCraneTo(target);
+
+                if (isCorrectPosition &&
+                    (_crane.transform.position - target).sqrMagnitude < 0.1f)
+                {
+                    ChangeColor(_craneGroundCube, Color.green);
+                    ChangeColor(_craneLineCube, Color.blue);
+                }
+                else
+                {
+                    ChangeColor(_craneGroundCube, Color.red);
+                    ChangeColor(_craneLineCube, Color.blue);
+                }
             }
         }
 
@@ -114,6 +155,9 @@ public class CraneController : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 DropBlock();
+
+                ChangeColor(_craneGroundCube, Color.black);
+                ChangeColor(_craneLineCube, Color.black);
             }
 
         }
@@ -145,18 +189,18 @@ public class CraneController : MonoBehaviour
 
         // Draw line cube
         _craneLineCube.transform.localScale = new Vector3(
-            _attachedBlock.transform.localScale.x,
+            _attachedBlock.transform.localScale.x * 1.02f,
             _attachmentLength,
-            _attachedBlock.transform.localScale.z
+            _attachedBlock.transform.localScale.z * 1.02f
             );
 
         _craneLineCube.transform.position = _crane.transform.position + new Vector3(0, -0.5f * _attachmentLength, 0);
 
         // Draw ground cube
         _craneGroundCube.transform.localScale = new Vector3(
-            _attachedBlock.transform.localScale.x,
+            _attachedBlock.transform.localScale.x * 1.05f,
             craneHeight,
-            _attachedBlock.transform.localScale.z
+            _attachedBlock.transform.localScale.z * 1.05f
             );
 
         _craneGroundCube.transform.position = _crane.transform.position + new Vector3(0, -0.5f * craneHeight, 0);
@@ -191,6 +235,8 @@ public class CraneController : MonoBehaviour
 
     private void AttachNextBlock()
     {
+        if (_blockList.Count <= 0) { return; }
+
         var nextBlock = _blockList[_blockList.Count - 1];
         _blockList.RemoveAt(_blockList.Count - 1);
 

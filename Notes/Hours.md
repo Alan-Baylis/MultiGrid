@@ -142,21 +142,28 @@ Fun for all ages - Educational for kids
 
 - Fix bug with block list
 
+## Hour 9
+
+### 5:48-
+
+- Handle all blocks placed
+- Highlight crane with blue for attachment cube
 
 ## TODO
 
 ### Implementation Tasks
 
 - Handle blocks all placed
-- Correct off by one error with block list
+- Highlight crane green when in correct position
+- Highlight crane red when in bad position
+- Highlight crane line block as blue
 
 - Create main scene
 - Add grid
 - Add crane
 - Move camera to grid
 
-- Highlight crane green when in correct position
-- Highlight crane red when in bad position
+
 
 - Create game state logic
 - Random levels: Create grid of random size

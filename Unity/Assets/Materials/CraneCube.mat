@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RowColumn
-  m_Shader: {fileID: 10723, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: CraneCube
+  m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: a567580d54a18de468c908156144f0b8, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3115e909bf5d72b45a212a842eb97dcb, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -36,4 +36,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .501960814, g: .831372559, b: .235294119, a: 1}
+        second: {r: .75686276, g: .75686276, b: .75686276, a: 1}
