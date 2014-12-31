@@ -1159,9 +1159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minColumnValue: 3
-  maxColumnValue: 8
+  maxColumnValue: 5
   minRowValue: 2
-  maxRowValue: 7
+  maxRowValue: 4
   lastColumn: 0
   lastRow: 0
   lastColumnX: 0

@@ -251,9 +251,9 @@ public class CraneController : MonoBehaviour
 
         var blocks = new List<BlockPosition>();
 
-        for (int iCol = minCol; iCol < maxCol; iCol++)
+        for (int iCol = minCol; iCol <= maxCol; iCol++)
         {
-            for (int iRow = minRow; iRow < maxRow; iRow++)
+            for (int iRow = minRow; iRow <= maxRow; iRow++)
             {
                 blocks.Add(new BlockPosition() { column = iCol, row = iRow });
             }

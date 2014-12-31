@@ -127,32 +127,48 @@ Fun for all ages - Educational for kids
 - Move block with crane
 - Drop block
 
-### 5:09-
+### 5:09-5:32
 
 - Move crane to position on mouse down
 - Drop block on mouse/tap up
 - Move crane to reset position after drop
+- Align crane with nearest position
+
+### 5:33-5:35
+
+- Review notes
+
+### 5:44-5:45
+
+- Fix bug with block list
+
 
 ## TODO
 
 ### Implementation Tasks
 
-- Align crane with nearest position
-
-- Move crane back to reset position after drop
-
-- Ideas:
-	- Drop block only on mouse click (or tap on button, but not on touch anywhere)
-	- Add drop button
-	- Move crane to position programmatically
-
-
+- Handle blocks all placed
+- Correct off by one error with block list
 
 - Create main scene
 - Add grid
 - Add crane
 - Move camera to grid
+
+- Highlight crane green when in correct position
+- Highlight crane red when in bad position
+
+- Create game state logic
+- Random levels: Create grid of random size
+
+### Review Ideas
+
+- Drop block only on mouse click (or tap on button, but not on touch anywhere)
+- Add drop button
+- Move crane to position programmatically
+
 - Add "Drop" Button
+
 - Respond to inputs
 	- Directional: Move crane
 	- Move mouse/touch: Move crane
@@ -160,11 +176,11 @@ Fun for all ages - Educational for kids
 	- Tap on location: Move crane and drop
 
 
-- Create game state logic
-- Random levels: Create grid of random size
-- Show title
+### Decoration Tasks
 
+- Show title
 - Add electrical particle emitters
+
 
 ### Publishing Tasks
 
